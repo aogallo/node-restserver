@@ -14,11 +14,18 @@
         "body-parser": "^1.18.2",
         "express": "^4.16.2",
         "jsonwebtoken": "^9.0.0",
-        "mongoose": "^6.8.0",
-        "mongoose-unique-validator": "^3.1.0",
+        "mongoose": "^8.9.5",
+        "mongoose-unique-validator": "^5.0.1",
         "underscore": "^1.9.0"
     },
     "devDependencies": {
-        "nodemon": "^2.0.20"
+        "@eslint/js": "^9.18.0",
+        "eslint": "^9.18.0",
+        "eslint-config-prettier": "^10.0.1",
+        "globals": "^15.14.0",
+        "nodemon": "^3.1.9",
+        "prettier": "3.4.2",
+        "typescript": "^5.7.3",
+        "typescript-eslint": "^8.21.0"
     }
 }
