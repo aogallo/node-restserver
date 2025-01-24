@@ -4,7 +4,11 @@ import jwt from "jsonwebtoken";
 //  VERIFICACION DE TOKEN
 //====================================
 
-const verificaToken = (req: Request, res: Response, next: NextFunction) => {
+export const verificaToken = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   const token = req.get("token");
   const secretKey = process.env.SEED;
   if (!token) {
@@ -39,7 +43,11 @@ const verificaToken = (req: Request, res: Response, next: NextFunction) => {
 //  VERIFICACION DE ADMINROLE
 //====================================
 
-const verificaAdmin_Role = (req, res, next) => {
+export const verificaAdmin_Role = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   const usuario = req.usuario;
   console.log(usuario);
 
@@ -51,10 +59,5 @@ const verificaAdmin_Role = (req, res, next) => {
   }
 
   next();
-};
-
-module.exports = {
-  verificaToken,
-  verificaAdmin_Role,
 };
 
