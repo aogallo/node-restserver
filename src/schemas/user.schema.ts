@@ -10,7 +10,7 @@ export interface IUser {
   img?: string
 }
 
-export const userSchema = z.object({
+export const userZodSchema = z.object({
   firstName: z
     .string()
     .min(3, 'First Name must be at least 3 characters')
@@ -36,4 +36,4 @@ export const userSchema = z.object({
   img: z.string().optional(),
 })
 
-export type User = z.infer<typeof userSchema>
+export type User = z.infer<typeof userZodSchema>

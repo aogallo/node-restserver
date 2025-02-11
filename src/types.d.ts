@@ -1,5 +1,6 @@
 import { JwtPayload } from 'jsonwebtoken'
-import { IUser } from './models/user'
+import { Request } from 'express'
+import { IUser } from './schemas/user.schema'
 
 declare global {
   namespace Express {
@@ -11,4 +12,8 @@ declare global {
 
 interface UserJwtPayload extends JwtPayload {
   user: IUser
+}
+
+interface CreateRequest<T> extends Request {
+  body: T
 }
