@@ -1,18 +1,10 @@
-import mongoose from 'mongoose'
+import mongoose, { Document } from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
+import { User } from '../schemas/user.schema'
 
 const Schema = mongoose.Schema
 
-export interface IUser {
-  firstName: string
-  email: string
-  password: string
-  state: boolean
-  google: boolean
-  role: string
-  img?: string
-}
-const userSchema = new Schema<IUser>({
+const userSchema = new Schema<User>({
   firstName: {
     type: String,
     required: [true, 'The First Name is required'],
@@ -45,7 +37,7 @@ const userSchema = new Schema<IUser>({
 })
 
 userSchema.methods.toJSON = function (): void {
-  const user = this
+  const user = this as Document
   const userObject = user.toObject()
   delete userObject.password
 

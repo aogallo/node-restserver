@@ -1,3 +1,8 @@
+import { Pool } from 'pg'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
 // ============================
 //  Puerto
 // ============================
@@ -35,3 +40,10 @@ if (process.env.NODE_ENV === 'dev') {
 
 process.env.URLDB = urlDB
 
+export const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.PASSWORD,
+  port: parseInt(process.env.DB_PORT || '5432'),
+})
