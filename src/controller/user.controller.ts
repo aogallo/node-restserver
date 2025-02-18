@@ -4,11 +4,7 @@ import { UserRepository } from '../repositories/user.repository'
 import { User } from '../schemas/user.schema'
 import { CreateRequest, SearchQueryRequest } from '../types'
 import bcrypt from 'bcrypt'
-import {
-  PaginationQuery,
-  paginationSchema,
-  SearchQuery,
-} from '../schemas/common.schemas'
+import { paginationSchema, SearchQuery } from '../schemas/common.schemas'
 
 export class UserController {
   private userRepository: UserRepository
@@ -27,7 +23,7 @@ export class UserController {
 
     const user = this.userRepository.create(userData)
 
-    return res.status(200).json({ succes: true, data: user })
+    res.status(200).json({ succes: true, data: user })
   }
 
   getUserById = (req: SearchQueryRequest<SearchQuery>, res: Response) => {
