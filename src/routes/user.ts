@@ -17,7 +17,7 @@ router.post(
   userController.createUser
 )
 
-router.put('/usuario/:id', verificaToken, userController.updateUserById)
+router.put('/user/:id', verificaToken, userController.updateUserById)
 
 // router.delete('/usuario/:id', verificaToken, function (req, res) {
 //   const id = req.params.id
