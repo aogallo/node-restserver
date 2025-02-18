@@ -17,3 +17,11 @@ interface UserJwtPayload extends JwtPayload {
 interface CreateRequest<T> extends Request {
   body: T
 }
+
+interface SearchQueryRequest<T> extends Request {
+  query: T
+}
+
+interface AuthRequest extends Request {
+  user?: IUser
+}

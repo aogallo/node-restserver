@@ -17,4 +17,6 @@ export abstract class BaseRepository<T> {
   abstract create(item: T): Promise<T>
   abstract update(id: number, item: T): Promise<T | null>
   abstract delete(id: number): Promise<boolean>
+
+  abstract getById(id: string): Promise<T | null>
 }

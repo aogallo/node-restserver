@@ -40,4 +40,58 @@ export class UserRepository extends BaseRepository<User> {
 
     return result.rowCount != null && result.rowCount > 0
   }
+
+  async findAll({
+    offset,
+    limit,
+    sortBy = 'createdAt',
+    order = 'desc',
+  }: {
+    offset: number
+    limit: number
+    sortBy?: string
+    order?: string
+  }): Promise<User[] | []> {
+    const result = await this.pool.query(
+      `
+      SELECT id, firstName, lastName, state, google, role, img
+      FROM users
+      ORDER BY ${sortBy} ${order}
+      LIMIT $1 OFFSET $2
+      `,
+      [limit, offset]
+    )
+
+    return result.rows
+  }
+
+  async search(
+    query: string,
+    fields: string[] = ['firstName']
+  ): Promise<User[] | []> {
+    const searchFields = fields.map((field) => `${field} ILIKE $1`).join(' OR ')
+
+    const result = await this.pool.query(
+      `
+      SELECT id, firstName, lastName, state, google, role, img
+      FROM users
+      WHERE ${searchFields}
+      `,
+      [`%${query}%`]
+    )
+
+    return result.rows
+  }
+
+  async getById(id: string): Promise<User | null> {
+    const result = await this.pool.query(`SELECT * FROM users WHERE id = $1`, [
+      id,
+    ])
+
+    if (result.rows.length > 0) {
+      return null
+    }
+
+    return result.rows[0]
+  }
 }
